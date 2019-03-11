@@ -2,13 +2,13 @@ package guru.springframework.joke.jokeapp.controllers;
 
 import guru.springframework.joke.jokeapp.services.JokeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+//import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.ws.RequestWrapper;
 
-@Controller
+@RestController
 public class JokeController {
 
     private JokeService jokeService;
@@ -18,12 +18,13 @@ public class JokeController {
         this.jokeService = jokeService;
     }
 
-    @RequestMapping({"/",""})
-    public String showJoke(Model model) {
+    @RequestMapping("/norris")
+    public String showJoke() {
+//    public Model showJoke(Model model) {
 
-        model.addAttribute("joke", jokeService.getJoke());
-
-        return "chucknorris";
+//        model.addAttribute("joke", jokeService.getJoke());
+//        return model;
+        return jokeService.getJoke();
 
     }
 }
