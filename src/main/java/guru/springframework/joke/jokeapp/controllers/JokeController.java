@@ -2,29 +2,30 @@ package guru.springframework.joke.jokeapp.controllers;
 
 import guru.springframework.joke.jokeapp.services.JokeService;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
+@Controller
 public class JokeController {
 
     private JokeService jokeService;
 
-    @Autowired
+//    @Autowired
     public JokeController(JokeService jokeService) {
         this.jokeService = jokeService;
     }
 
-    @RequestMapping("/norris")
-    public String showJoke() {
-//    public Model showJoke(Model model) {
+    @RequestMapping({"/", "/norris"})
+    public ModelAndView showJoke() {
 
-//        model.addAttribute("joke", jokeService.getJoke());
-//        return model;
-        return jokeService.getJoke();
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("chucknorris");
 
+        mav.addObject("joke", jokeService.getJoke());
+        return mav;
     }
 }
